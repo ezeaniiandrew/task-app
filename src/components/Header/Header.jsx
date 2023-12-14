@@ -5,16 +5,13 @@ import { useTheme } from "context/index";
 import Button from "components/Button/Button";
 
 function Header() {
-  const { theme, toggleTheme } = useTheme();
+  const { isDarkMode, toggleDarkMode } = useTheme();
 
   return (
     <header className={styles.header}>
       <h1>Todo</h1>
-      <Button onClick={() => toggleTheme()}>
-        <img
-          src={theme === "light" ? moonIcon : sunIcon}
-          alt="An icon of the sun"
-        />
+      <Button onClick={() => toggleDarkMode(!isDarkMode)}>
+        <img src={isDarkMode ? sunIcon : moonIcon} alt="An icon of the sun" />
       </Button>
     </header>
   );

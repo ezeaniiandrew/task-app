@@ -5,23 +5,38 @@ import { themeContext } from "./index";
 const { Provider } = themeContext;
 
 function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState("dark");
+  const prefersDarkMode =
+    localStorage.getItem("prefersDarkMode") ??
+    (window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches);
 
-  const toggleTheme = () => {
-    if (theme === "light") {
-      setTheme("dark");
-    } else {
-      setTheme("light");
-    }
+  const [isDarkMode, setIsDarkMode] = useState(prefersDarkMode);
+
+  const toggleDarkMode = (mode) => {
+    setIsDarkMode(mode);
+    localStorage.setItem("prefersDarkMode", JSON.stringify(mode));
   };
 
   useEffect(() => {
-    localStorage.setItem("theme", JSON.stringify(theme));
+    const handleColorSchemeChange = (e) => {
+      localStorage.setItem("prefersDarkMode", JSON.stringify(e.matches));
+      setIsDarkMode(e.matches);
+    };
 
-    document.body.className = theme;
-  }, [theme]);
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", handleColorSchemeChange);
 
-  return <Provider value={{ toggleTheme, theme }}>{children}</Provider>;
+    document.body.className = isDarkMode ? "dark" : "light";
+
+    return () => {
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .removeEventListener("change", handleColorSchemeChange);
+    };
+  }, [isDarkMode, setIsDarkMode]);
+
+  return <Provider value={{ isDarkMode, toggleDarkMode }}>{children}</Provider>;
 }
 
 export default ThemeProvider;
