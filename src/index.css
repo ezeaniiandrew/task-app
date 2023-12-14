@@ -49,13 +49,13 @@ body {
     --main-bg-color: hsl(235, 21%, 11%);
     --todo-bg-color: hsl(235, 24%, 19%);
     --text-color: hsl(234, 39%, 85%);
-    --btn-hover-color: hsl(236, 33%, 92%);
     --btn-text-color: hsl(234, 11%, 52%);
-    --clear-btn-hover-color: hsl(234, 39%, 85%);
+    --btn-hover-color: hsl(236, 33%, 92%);
     --task-completed-color: hsl(233, 14%, 35%);
-    --unknown-color: hsl(237, 14%, 50%);
-    --bg-image: url("./assets/bg-desktop-dark.jpg");
+    --clear-btn-hover-color: hsl(234, 39%, 85%);
+    --checkbox-border-color: hsl(237, 14%, 50%);
     --footer-text-color: hsl(233, 14%, 35%);
+    --bg-image: url("./assets/bg-desktop-dark.jpg");
   }
 
   &.light {
@@ -65,9 +65,8 @@ body {
     --btn-hover-color: hsl(235, 19%, 35%);
     --task-completed-color: hsl(233, 11%, 84%);
     --clear-btn-hover-color: hsl(236, 9%, 61%);
+    --checkbox-border-color: hsl(236, 33%, 92%);
     --footer-text-color: hsl(236, 9%, 61%);
-    /* --task-completed-color: hsl(233, 14%, 35%); */
-    --unknown-color: hsl(236, 33%, 92%);
     --bg-image: url("./assets/bg-desktop-light.jpg");
   }
 }

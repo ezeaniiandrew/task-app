@@ -14,5 +14,4 @@
 
 .clearBtn:hover {
   color: var(--clear-btn-hover-color);
-  /* color: var(--btn-hover-color); */
 }

@@ -1,6 +1,4 @@
 .label {
-  /* border: 2px solid red; */
-  /* width: 100%; */
   position: relative;
 
   & span {
@@ -23,7 +21,6 @@
   padding: 20px 53px;
   background-color: var(--todo-bg-color);
   color: var(--text-color);
-  /* font-weight: inherit; */
   font-size: inherit;
   caret-color: var(--active-btn-color);
 }

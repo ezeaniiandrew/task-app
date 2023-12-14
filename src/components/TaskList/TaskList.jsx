@@ -34,6 +34,8 @@ function TaskList({ tasksData, setTasksData }) {
     }
   };
 
+  const tasks = getTasks(activeTab);
+
   return (
     <motion.section
       initial="initial"
@@ -41,13 +43,8 @@ function TaskList({ tasksData, setTasksData }) {
       variants={list}
       className={styles.box}
     >
-      <Reorder.Group
-        axis="y"
-        as="ul"
-        values={tasksData}
-        onReorder={setTasksData}
-      >
-        {getTasks(activeTab).map((task) => (
+      <Reorder.Group axis="y" as="ul" values={tasks} onReorder={setTasksData}>
+        {tasks.map((task) => (
           <Task key={task.id} task={task} setTasksData={setTasksData} />
         ))}
       </Reorder.Group>

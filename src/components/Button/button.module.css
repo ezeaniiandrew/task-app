@@ -15,6 +15,5 @@
 
   &:hover {
     color: var(--btn-hover-color);
-    /* color: var(--text-color1); */
   }
 }

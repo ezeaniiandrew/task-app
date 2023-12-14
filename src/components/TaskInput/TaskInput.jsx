@@ -13,8 +13,7 @@ function TaskInput({ setTasksData }) {
     }
 
     setTasksData((prevTasks) => {
-      console.log(prevTasks);
-      return [...prevTasks, { id, taskInfo: inputValue, status: "active" }];
+      return [...prevTasks, { id, title: inputValue, status: "active" }];
     });
 
     setInputValue("");
@@ -22,10 +21,10 @@ function TaskInput({ setTasksData }) {
 
   return (
     <form onSubmit={(e) => createNewTask(e)}>
-      <label htmlFor="todo-input" className={styles.label}>
+      <label htmlFor="task-input" className={styles.label}>
         <input
           type="text"
-          id="todo-input"
+          id="task-input"
           placeholder="Create a new todo..."
           className={styles.input}
           value={inputValue}
