@@ -1,0 +1,20 @@
+.base {
+  background-color: transparent;
+  border: none;
+  padding: 10px;
+  color: var(--btn-text-color);
+  font-weight: inherit;
+  font-size: inherit;
+  cursor: pointer;
+
+  @media screen and (max-width: 600px) {
+    & {
+      padding: 5px;
+    }
+  }
+
+  &:hover {
+    color: var(--btn-hover-color);
+    /* color: var(--text-color1); */
+  }
+}

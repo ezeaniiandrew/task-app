@@ -1,0 +1,79 @@
+:root {
+  color-scheme: light dark;
+
+  /* Neutral colors */
+  --active-btn-color: hsl(220, 98%, 61%);
+  --checked-bg: linear-gradient(
+    180deg,
+    hsl(192, 100%, 67%),
+    hsl(280, 87%, 65%)
+  );
+  --logo-color: hsl(0, 0%, 98%);
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+body {
+  background-image: var(--bg-image);
+  background-repeat: no-repeat;
+  background-position: top;
+  background-color: var(--main-bg-color);
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  min-height: 100vh;
+  font-family: "Josefin Sans", sans-serif;
+  line-height: 1.5;
+  font-weight: 700;
+  font-size: 1.125rem;
+  padding: 2rem;
+  overflow: hidden;
+
+  @media screen and (max-width: 600px) {
+    & {
+      padding: 0.5rem;
+    }
+  }
+
+  &.dark {
+    /* Dark colors */
+    --main-bg-color: hsl(235, 21%, 11%);
+    --todo-bg-color: hsl(235, 24%, 19%);
+    --text-color: hsl(234, 39%, 85%);
+    --btn-hover-color: hsl(236, 33%, 92%);
+    --btn-text-color: hsl(234, 11%, 52%);
+    --clear-btn-hover-color: hsl(234, 39%, 85%);
+    --task-completed-color: hsl(233, 14%, 35%);
+    --unknown-color: hsl(237, 14%, 50%);
+    --bg-image: url("./assets/bg-desktop-dark.jpg");
+    --footer-text-color: hsl(233, 14%, 35%);
+  }
+
+  &.light {
+    --main-bg-color: hsl(0, 0%, 98%);
+    --todo-bg-color: hsl(0, 0%, 98%);
+    --text-color: hsl(234, 11%, 52%);
+    --btn-hover-color: hsl(235, 19%, 35%);
+    --task-completed-color: hsl(233, 11%, 84%);
+    --clear-btn-hover-color: hsl(236, 9%, 61%);
+    --footer-text-color: hsl(236, 9%, 61%);
+    /* --task-completed-color: hsl(233, 14%, 35%); */
+    --unknown-color: hsl(236, 33%, 92%);
+    --bg-image: url("./assets/bg-desktop-light.jpg");
+  }
+}
+
+#root {
+  width: 100%;
+  max-width: 720px;
+  margin-top: 10vh;
+}

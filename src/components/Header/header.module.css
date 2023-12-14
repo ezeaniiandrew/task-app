@@ -1,0 +1,12 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+
+  & > h1 {
+    text-transform: uppercase;
+    letter-spacing: 1rem;
+    color: var(--logo-color);
+  }
+}

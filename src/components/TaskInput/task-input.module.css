@@ -1,0 +1,49 @@
+.label {
+  /* border: 2px solid red; */
+  /* width: 100%; */
+  position: relative;
+
+  & span {
+    position: absolute;
+    top: 0;
+    left: 15px;
+  }
+
+  & > label > div {
+    top: -100%;
+
+    background: var(--checked-bg);
+  }
+}
+
+.input {
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  padding: 20px 53px;
+  background-color: var(--todo-bg-color);
+  color: var(--text-color);
+  /* font-weight: inherit; */
+  font-size: inherit;
+  caret-color: var(--active-btn-color);
+}
+
+.circle {
+  position: relative;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: var(--unknown-color);
+
+  &::before {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 1px;
+    left: 1px;
+    border-radius: 50%;
+    width: 23px;
+    height: 23px;
+    background-color: var(--todo-bg-color);
+  }
+}
