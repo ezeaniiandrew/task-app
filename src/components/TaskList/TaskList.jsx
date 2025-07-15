@@ -3,20 +3,7 @@ import Task from "components/Task/Task";
 import styles from "./task-list.module.css";
 import BottomTab from "components/BottomTab/BottomTab";
 import { useState } from "react";
-import { Reorder, motion } from "framer-motion";
-
-const list = {
-  final: {
-    y: [500, 0],
-    transition: {
-      type: "spring",
-      stiffness: 100,
-      duration: 0.6,
-      when: "beforeChildren",
-      staggerChildren: 0.3,
-    },
-  },
-};
+import { Reorder } from "framer-motion";
 
 function TaskList({ tasksData, setTasksData }) {
   const [activeTab, setActiveTab] = useState("all");
@@ -37,12 +24,7 @@ function TaskList({ tasksData, setTasksData }) {
   const tasks = getTasks(activeTab);
 
   return (
-    <motion.section
-      initial="initial"
-      animate="final"
-      variants={list}
-      className={styles.box}
-    >
+    <section className={styles.box}>
       <Reorder.Group axis="y" as="ul" values={tasks} onReorder={setTasksData}>
         {tasks.map((task) => (
           <Task key={task.id} task={task} setTasksData={setTasksData} />
@@ -54,7 +36,7 @@ function TaskList({ tasksData, setTasksData }) {
         handleClick={setActiveTab}
         setTasksData={setTasksData}
       />
-    </motion.section>
+    </section>
   );
 }
 
