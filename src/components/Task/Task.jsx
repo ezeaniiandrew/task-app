@@ -10,8 +10,9 @@ const item = {
   final: {
     y: 0,
     opacity: 1,
-    transition: { duration: 0.2, ease: "easeInOut" },
+    transition: { duration: 0.2, ease: [0.25, 1, 0.5, 1] },
   },
+  exit: { x: "-15vw", opacity: 0, transition: { duration: 0.15 } },
 };
 
 function Task({ task, setTasksData }) {
@@ -42,8 +43,8 @@ function Task({ task, setTasksData }) {
       onDragEnd={() => setIsDragging(false)}
       initial="initial"
       animate="final"
+      exit="exit"
       value={task}
-      exit={{ x: "-15vw", opacity: 0 }}
       key={id}
       className={`${styles.task} ${isDragging ? styles.dragging : ""}`}
       layout
