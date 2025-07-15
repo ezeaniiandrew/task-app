@@ -6,10 +6,11 @@ import { Reorder } from "framer-motion";
 import { useState } from "react";
 
 const item = {
-  initial: { x: "100vw" },
+  initial: { y: "-5vw", opacity: 0 },
   final: {
-    x: 0,
-    transition: { duration: 0.7, type: "spring", stiffness: 45 },
+    y: 0,
+    opacity: 1,
+    transition: { duration: 0.2, ease: "easeInOut" },
   },
 };
 
@@ -39,6 +40,8 @@ function Task({ task, setTasksData }) {
       variants={item}
       onDragStart={() => setIsDragging(true)}
       onDragEnd={() => setIsDragging(false)}
+      initial="initial"
+      animate="final"
       value={task}
       className={`${styles.task} ${isDragging ? styles.dragging : ""}`}
     >
