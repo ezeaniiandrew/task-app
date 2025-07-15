@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import styles from "./checkbox.module.css";
 
-function Checkbox({ type }) {
+function Checkbox({ type, handleChange }) {
   return (
     <label htmlFor="task status" className={styles.label}>
       <input
@@ -9,7 +9,7 @@ function Checkbox({ type }) {
         type="checkbox"
         checked={type === "completed"}
         id="task status"
-        readOnly
+        onChange={handleChange}
       />
       <div className={styles[type]}></div>
     </label>

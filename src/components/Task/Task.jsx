@@ -34,12 +34,11 @@ function Task({ task, setTasksData }) {
 
   return (
     <Reorder.Item
-      onClick={() => updateTaskStatus(id)}
       variants={item}
       value={task}
       className={styles.task}
     >
-      <Checkbox type={status} />
+      <Checkbox type={status} handleChange={() => updateTaskStatus(id)} />
       <p className={status === "completed" ? styles.done : null}>{title}</p>
       <img src={cancelIcon} onClick={() => deleteTask(id)} alt="" />
     </Reorder.Item>
