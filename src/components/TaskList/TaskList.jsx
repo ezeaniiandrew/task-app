@@ -3,7 +3,7 @@ import Task from "components/Task/Task";
 import styles from "./task-list.module.css";
 import BottomTab from "components/BottomTab/BottomTab";
 import { useState } from "react";
-import { Reorder } from "framer-motion";
+import { AnimatePresence, Reorder } from "framer-motion";
 
 function TaskList({ tasksData, setTasksData }) {
   const [activeTab, setActiveTab] = useState("all");
@@ -26,9 +26,11 @@ function TaskList({ tasksData, setTasksData }) {
   return (
     <section className={styles.box}>
       <Reorder.Group axis="y" as="ul" values={tasks} onReorder={setTasksData}>
-        {tasks.map((task) => (
-          <Task key={task.id} task={task} setTasksData={setTasksData} />
-        ))}
+        <AnimatePresence>
+          {tasks.map((task) => (
+            <Task key={task.id} task={task} setTasksData={setTasksData} />
+          ))}
+        </AnimatePresence>
       </Reorder.Group>
       <BottomTab
         tasksData={tasksData}

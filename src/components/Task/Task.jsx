@@ -43,7 +43,10 @@ function Task({ task, setTasksData }) {
       initial="initial"
       animate="final"
       value={task}
+      exit={{ x: "-15vw", opacity: 0 }}
+      key={id}
       className={`${styles.task} ${isDragging ? styles.dragging : ""}`}
+      layout
     >
       <Checkbox type={status} handleChange={() => updateTaskStatus(id)} />
       <p className={status === "completed" ? styles.done : null}>{title}</p>
