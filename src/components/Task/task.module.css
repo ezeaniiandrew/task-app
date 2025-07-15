@@ -14,9 +14,11 @@
     background: var(--checked-bg);
   }
 
-  & img {
+  & button {
     display: none;
     margin-left: auto;
+    background: transparent;
+    border: none;
 
     @media screen and (hover: none) {
       & {
@@ -25,7 +27,7 @@
     }
   }
 
-  &:hover img {
+  &:hover button {
     display: block;
   }
 }

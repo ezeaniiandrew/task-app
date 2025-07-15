@@ -40,7 +40,9 @@ function Task({ task, setTasksData }) {
     >
       <Checkbox type={status} handleChange={() => updateTaskStatus(id)} />
       <p className={status === "completed" ? styles.done : null}>{title}</p>
-      <img src={cancelIcon} onClick={() => deleteTask(id)} alt="" />
+      <button onClick={() => deleteTask(id)}>
+        <img src={cancelIcon} alt="Delete Icon" />
+      </button>
     </Reorder.Item>
   );
 }
