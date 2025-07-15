@@ -3,6 +3,7 @@ import Checkbox from "components/Checkbox/Checkbox";
 import styles from "./task.module.css";
 import cancelIcon from "assets/icon-cross.svg";
 import { Reorder } from "framer-motion";
+import { useState } from "react";
 
 const item = {
   initial: { x: "100vw" },
@@ -14,6 +15,7 @@ const item = {
 
 function Task({ task, setTasksData }) {
   const { title, status, id } = task;
+  const [isDragging, setIsDragging] = useState(false);
 
   const updateTaskStatus = (id) => {
     setTasksData((prevItems) =>
@@ -35,8 +37,10 @@ function Task({ task, setTasksData }) {
   return (
     <Reorder.Item
       variants={item}
+      onDragStart={() => setIsDragging(true)}
+      onDragEnd={() => setIsDragging(false)}
       value={task}
-      className={styles.task}
+      className={`${styles.task} ${isDragging ? styles.dragging : ""}`}
     >
       <Checkbox type={status} handleChange={() => updateTaskStatus(id)} />
       <p className={status === "completed" ? styles.done : null}>{title}</p>

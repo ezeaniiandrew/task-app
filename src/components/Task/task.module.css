@@ -6,9 +6,13 @@
   border-bottom: 1px solid var(--text-color);
   gap: 18px;
   font-weight: 700;
-  cursor: pointer;
+  cursor: grab;
   text-transform: capitalize;
   background-color: var(--todo-bg-color);
+
+  &.dragging {
+    cursor: grabbing;
+  }
 
   &:hover > label > input:not(:checked) ~ div {
     background: var(--checked-bg);
