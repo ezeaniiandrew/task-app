@@ -13,7 +13,7 @@ function TaskInput({ setTasksData }) {
     }
 
     setTasksData((prevTasks) => {
-      return [...prevTasks, { id, title: inputValue, status: "active" }];
+      return [{ id, title: inputValue, status: "active" }, ...prevTasks];
     });
 
     setInputValue("");
