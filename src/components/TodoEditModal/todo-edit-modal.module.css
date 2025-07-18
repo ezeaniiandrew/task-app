@@ -1,0 +1,44 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  padding-inline: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & > form {
+    width: 100%;
+    max-width: 720px;
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    flex-direction: column;
+
+    input {
+      padding: 15px;
+      width: 100%;
+      grid-column: 1/-1;
+    }
+  }
+}
+
+.btns-container {
+  display: flex;
+  gap: 8px;
+  padding-block-start: 5px;
+  grid-column: 2/-1;
+  justify-content: flex-end;
+
+  & > button:first-child {
+    color: green;
+  }
+}
+
+.error {
+  font-size: clamp(0.875rem, 1.2vw + 0.5rem, 1.125rem);
+  color: #d93025;
+  grid-column: 1/2;
+}
