@@ -78,6 +78,7 @@ function Task({ task, setTasksData }) {
               className={styles.edit}
               layoutId={`edit-${id}`}
               onClick={openModal}
+              disabled={status === "completed"}
             >
               <span>&#9998;</span>
             </motion.button>
