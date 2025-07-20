@@ -97,6 +97,7 @@ function Task({ task, setTasksData }) {
           title={title}
           id={id}
           setTasksData={setTasksData}
+          setShowEditModal={setShowEditModal}
           handleCloseModal={closeModal}
         />
       )}
