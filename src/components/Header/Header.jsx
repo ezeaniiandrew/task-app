@@ -10,8 +10,14 @@ function Header() {
   return (
     <header className={styles.header}>
       <h1>Todo</h1>
-      <Button onClick={() => toggleDarkMode(!isDarkMode)}>
-        <img src={isDarkMode ? sunIcon : moonIcon} alt="An icon of the sun" />
+      <Button
+        aria-label={`Change to ${isDarkMode ? "light" : "dark"} theme`}
+        onClick={() => toggleDarkMode(!isDarkMode)}
+      >
+        <img
+          src={isDarkMode ? sunIcon : moonIcon}
+          alt={`${isDarkMode ? "sun" : "moon"} icon`}
+        />
       </Button>
     </header>
   );

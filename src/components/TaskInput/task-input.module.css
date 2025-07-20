@@ -3,7 +3,7 @@
 
   & span {
     position: absolute;
-    top: 0;
+    top: -30%;
     left: 15px;
   }
 
@@ -30,7 +30,7 @@
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background: var(--unknown-color);
+  background: var(--checkbox-border-color);
 
   &::before {
     content: "";

@@ -1,14 +1,19 @@
 /* eslint-disable react/prop-types */
 import styles from "./checkbox.module.css";
 
-function Checkbox({ type, handleChange }) {
+function Checkbox({ type, task, handleChange }) {
+  const checkboxId = `task-status-${task.id}`;
+
   return (
-    <label htmlFor="task status" className={styles.label}>
+    <label htmlFor={checkboxId} className={styles.label}>
       <input
         className={styles.check}
         type="checkbox"
+        aria-label={`Mark ${task.title} as ${
+          type === "active" ? "completed" : "active"
+        }`}
         checked={type === "completed"}
-        id="task status"
+        id={checkboxId}
         onChange={handleChange}
       />
       <div className={styles[type]}></div>

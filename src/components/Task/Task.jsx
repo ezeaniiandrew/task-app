@@ -2,7 +2,7 @@
 import Checkbox from "components/Checkbox/Checkbox";
 import styles from "./task.module.css";
 import { Reorder, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import TodoEditModal from "components/TodoEditModal/TodoEditModal";
 
 const item = {
@@ -17,8 +17,8 @@ const item = {
 function Task({ task, setTasksData }) {
   const { title, status, id } = task;
   const [isDragging, setIsDragging] = useState(false);
-  const [showErrorMessage, setShowErrorMessage] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
+  const previouslyFocusedElementRef = useRef(null);
 
   const updateTaskStatus = (id) => {
     setTasksData((prevItems) =>
@@ -37,18 +37,17 @@ function Task({ task, setTasksData }) {
     setTasksData((prevItems) => prevItems.filter((task) => task.id !== id));
   };
 
-  useEffect(() => {
-    const handleCloseOverlay = (e) => {
-      if (e.key === "Escape") {
-        setShowEditModal(false);
-      }
-    };
-    window.addEventListener("keydown", handleCloseOverlay);
+  const closeModal = () => {
+    setShowEditModal(false);
+    if (previouslyFocusedElementRef.current) {
+      previouslyFocusedElementRef.current.focus();
+    }
+  };
 
-    return () => {
-      window.removeEventListener("keydown", handleCloseOverlay);
-    };
-  }, []);
+  const openModal = () => {
+    previouslyFocusedElementRef.current = document.activeElement;
+    setShowEditModal(true);
+  };
 
   return (
     <>
@@ -65,28 +64,26 @@ function Task({ task, setTasksData }) {
         className={`${styles.task} ${isDragging ? styles.dragging : ""}`}
       >
         <div className={styles.container}>
-          <Checkbox type={status} handleChange={() => updateTaskStatus(id)} />
+          <Checkbox
+            type={status}
+            task={task}
+            handleChange={() => updateTaskStatus(id)}
+          />
           <p className={status === "completed" ? styles.done : null}>
             {task.title}
           </p>
-          <div
-            style={{
-              display: "flex",
-              marginLeft: "auto",
-              gap: "10px",
-            }}
-          >
+          <div>
             <motion.button
-              title="edit"
+              aria-label={`edit ${title} task`}
               className={styles.edit}
               layoutId={`edit-${id}`}
-              onClick={() => setShowEditModal(true)}
+              onClick={openModal}
             >
               <span>&#9998;</span>
             </motion.button>
 
             <motion.button
-              title="delete"
+              title={`delete ${title} task`}
               layoutId={`cancel-${id}`}
               onClick={() => deleteTask(id)}
             >
@@ -100,9 +97,7 @@ function Task({ task, setTasksData }) {
           title={title}
           id={id}
           setTasksData={setTasksData}
-          setShowEditModal={setShowEditModal}
-          setShowErrorMessage={setShowErrorMessage}
-          showErrorMessage={showErrorMessage}
+          handleCloseModal={closeModal}
         />
       )}
     </>

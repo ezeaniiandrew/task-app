@@ -15,21 +15,14 @@
   }
 
   & button {
-    display: none;
     margin-left: auto;
     background: transparent;
     border: none;
-
-    @media screen and (hover: none) {
-      & {
-        display: block;
-      }
-    }
   }
 
-  &:hover button {
-    display: block;
-  }
+  /* &:hover button {
+    opacity: 1;
+  } */
 }
 
 .container {
@@ -46,8 +39,14 @@
     }
   }
 
-  & > div button {
-    font-size: clamp(0.875rem, 1.2vw + 0.5rem, 1.125rem);
+  & > div {
+    display: flex;
+    margin-left: auto;
+    gap: 10px;
+
+    button {
+      font-size: clamp(0.875rem, 1.2vw + 0.5rem, 1.125rem);
+    }
   }
 }
 
@@ -63,4 +62,22 @@
     display: inline-block;
     transform: rotate(90deg);
   }
+}
+
+.container:has(button:not(:focus)):hover > div {
+  opacity: 1;
+}
+
+.container:has(button:not(:focus)) > div {
+  opacity: 0;
+
+  @media screen and (hover: none) {
+    & {
+      opacity: 1;
+    }
+  }
+}
+
+.container:has(button:focus) > div {
+  opacity: 1;
 }

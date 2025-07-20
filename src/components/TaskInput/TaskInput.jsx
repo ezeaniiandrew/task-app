@@ -21,8 +21,13 @@ function TaskInput({ setTasksData }) {
 
   return (
     <form onSubmit={(e) => createNewTask(e)}>
-      <label htmlFor="task-input" className={styles.label}>
+      <label
+        htmlFor="task-input"
+        aria-label="Create a new todo"
+        className={styles.label}
+      >
         <input
+          autoFocus
           type="text"
           id="task-input"
           placeholder="Create a new todo..."

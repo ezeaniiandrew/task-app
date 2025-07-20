@@ -10,18 +10,21 @@ function BottomTab({ tab, handleClick, tasksData, setTasksData }) {
       </p>
       <div>
         <Button
+          aria-label="View all tasks"
           style={{ color: tab === "all" ? "var(--active-btn-color)" : null }}
           onClick={() => handleClick("all")}
         >
           All
         </Button>
         <Button
+          aria-label="View active tasks"
           style={{ color: tab === "active" ? "var(--active-btn-color)" : null }}
           onClick={() => handleClick("active")}
         >
           Active
         </Button>
         <Button
+          aria-label="View completed tasks"
           style={{
             color: tab === "completed" ? "var(--active-btn-color)" : null,
           }}
@@ -31,6 +34,7 @@ function BottomTab({ tab, handleClick, tasksData, setTasksData }) {
         </Button>
       </div>
       <Button
+        aria-label="Clear completed tasks"
         className={styles.clearBtn}
         onClick={() =>
           setTasksData((prevTasks) =>
