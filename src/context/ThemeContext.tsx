@@ -1,18 +1,23 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
-import { themeContext } from "./index";
+import { useEffect, useState, ReactNode } from "react";
+import { themeContext } from "./index.tsx";
 
 const { Provider } = themeContext;
 
-function ThemeProvider({ children }) {
+type ThemeProviderProps = {
+  children: ReactNode;
+};
+
+function ThemeProvider({ children }: ThemeProviderProps) {
   const prefersDarkMode =
-    localStorage.getItem("prefersDarkMode") ??
-    (window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches);
+    localStorage.getItem("prefersDarkMode") !== null
+      ? JSON.parse(localStorage.getItem("prefersDarkMode") as string)
+      : window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-  const [isDarkMode, setIsDarkMode] = useState(prefersDarkMode);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(prefersDarkMode);
 
-  const toggleDarkMode = (mode) => {
+  const toggleDarkMode = (mode: boolean) => {
     setIsDarkMode(mode);
     localStorage.setItem("prefersDarkMode", JSON.stringify(mode));
   };

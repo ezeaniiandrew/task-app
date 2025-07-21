@@ -1,19 +1,24 @@
-/* eslint-disable react/prop-types */
-import Task from "components/Task/Task";
+import TaskItem from "../TaskItem/TaskItem";
 import styles from "./task-list.module.css";
-import BottomTab from "components/BottomTab/BottomTab";
+import BottomTab from "../BottomTab/BottomTab";
 import { useState } from "react";
 import { AnimatePresence, Reorder } from "framer-motion";
+import { ActiveTab, TABS, Task } from "../../types/task";
 
-function TaskList({ tasksData, setTasksData }) {
-  const [activeTab, setActiveTab] = useState("all");
+type TaskListProps = {
+  tasksData: Task[];
+  setTasksData: React.Dispatch<React.SetStateAction<Task[]>>;
+};
 
-  const getTasks = (tab) => {
+function TaskList({ tasksData, setTasksData }: TaskListProps) {
+  const [activeTab, setActiveTab] = useState<ActiveTab>(TABS.ALL);
+
+  const getTasks = (tab: ActiveTab): Task[] => {
     switch (tab) {
-      case "active":
+      case TABS.ACTIVE:
         return tasksData.filter((task) => task.status !== "completed");
 
-      case "completed":
+      case TABS.COMPLETED:
         return tasksData.filter((task) => task.status !== "active");
 
       default:
@@ -28,7 +33,7 @@ function TaskList({ tasksData, setTasksData }) {
       <Reorder.Group axis="y" as="ul" values={tasks} onReorder={setTasksData}>
         <AnimatePresence>
           {tasks.map((task) => (
-            <Task key={task.id} task={task} setTasksData={setTasksData} />
+            <TaskItem key={task.id} task={task} setTasksData={setTasksData} />
           ))}
         </AnimatePresence>
       </Reorder.Group>

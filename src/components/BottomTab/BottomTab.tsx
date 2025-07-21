@@ -1,8 +1,21 @@
-/* eslint-disable react/prop-types */
-import Button from "components/Button/Button";
+import Button from "../Button/Button";
 import styles from "./bottom-tab.module.css";
 
-function BottomTab({ tab, handleClick, tasksData, setTasksData }) {
+import { ActiveTab, TABS, Task } from "../../types/task";
+
+type BottomTabProps = {
+  tab: ActiveTab;
+  handleClick: (tab: ActiveTab) => void;
+  tasksData: Task[];
+  setTasksData: React.Dispatch<React.SetStateAction<Task[]>>;
+};
+
+function BottomTab({
+  tab,
+  handleClick,
+  tasksData,
+  setTasksData,
+}: BottomTabProps) {
   return (
     <div className={styles.box}>
       <p>
@@ -11,23 +24,21 @@ function BottomTab({ tab, handleClick, tasksData, setTasksData }) {
       <div>
         <Button
           aria-label="View all tasks"
-          style={{ color: tab === "all" ? "var(--active-btn-color)" : null }}
           onClick={() => handleClick("all")}
+          className={`${tab === TABS.ALL ? styles.active : ""}`}
         >
           All
         </Button>
         <Button
           aria-label="View active tasks"
-          style={{ color: tab === "active" ? "var(--active-btn-color)" : null }}
+          className={`${tab === TABS.ACTIVE ? styles.active : ""}`}
           onClick={() => handleClick("active")}
         >
           Active
         </Button>
         <Button
           aria-label="View completed tasks"
-          style={{
-            color: tab === "completed" ? "var(--active-btn-color)" : null,
-          }}
+          className={`${tab === TABS.COMPLETED ? styles.active : ""}`}
           onClick={() => handleClick("completed")}
         >
           Completed

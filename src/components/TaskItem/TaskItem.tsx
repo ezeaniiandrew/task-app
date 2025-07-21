@@ -1,9 +1,14 @@
-/* eslint-disable react/prop-types */
-import Checkbox from "components/Checkbox/Checkbox";
+import Checkbox from "../Checkbox/Checkbox";
 import styles from "./task.module.css";
 import { Reorder, motion } from "framer-motion";
 import { useRef, useState } from "react";
-import TodoEditModal from "components/TodoEditModal/TodoEditModal";
+import TodoEditModal from "../TodoEditModal/TodoEditModal";
+import { Task } from "../../types/task";
+
+type TaskItemProps = {
+  task: Task;
+  setTasksData: React.Dispatch<React.SetStateAction<Task[]>>;
+};
 
 const item = {
   initial: { height: 0, opacity: 0 },
@@ -14,13 +19,13 @@ const item = {
   exit: { x: "-15vw", opacity: 0, transition: { duration: 0.15 } },
 };
 
-function Task({ task, setTasksData }) {
+function TaskItem({ task, setTasksData }: TaskItemProps) {
   const { title, status, id } = task;
   const [isDragging, setIsDragging] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
-  const previouslyFocusedElementRef = useRef(null);
+  const previouslyFocusedElementRef = useRef<HTMLElement | null>(null);
 
-  const updateTaskStatus = (id) => {
+  const updateTaskStatus = (id: string) => {
     setTasksData((prevItems) =>
       prevItems.map((task) =>
         task.id === id
@@ -33,7 +38,7 @@ function Task({ task, setTasksData }) {
     );
   };
 
-  const deleteTask = (id) => {
+  const deleteTask = (id: string) => {
     setTasksData((prevItems) => prevItems.filter((task) => task.id !== id));
   };
 
@@ -45,7 +50,7 @@ function Task({ task, setTasksData }) {
   };
 
   const openModal = () => {
-    previouslyFocusedElementRef.current = document.activeElement;
+    previouslyFocusedElementRef.current = document.activeElement as HTMLElement;
     setShowEditModal(true);
   };
 
@@ -106,4 +111,4 @@ function Task({ task, setTasksData }) {
   );
 }
 
-export default Task;
+export default TaskItem;

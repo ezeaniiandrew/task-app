@@ -1,8 +1,15 @@
-/* eslint-disable react/prop-types */
 import { useEffect, useRef, useState } from "react";
 import styles from "./todo-edit-modal.module.css";
 import { motion } from "framer-motion";
-import Button from "components/Button/Button";
+import Button from "../Button/Button";
+
+type TodoEditModalProps = {
+  id: string;
+  title: string;
+  setTasksData: React.Dispatch<React.SetStateAction<any[]>>;
+  setShowEditModal: React.Dispatch<React.SetStateAction<boolean>>;
+  handleCloseModal: () => void;
+};
 
 function TodoEditModal({
   id,
@@ -10,12 +17,13 @@ function TodoEditModal({
   setTasksData,
   setShowEditModal,
   handleCloseModal,
-}) {
+}: TodoEditModalProps) {
   const [showErrorMessage, setShowErrorMessage] = useState(false);
-  const inputRef = useRef();
-  const modalRef = useRef();
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const modalRef = useRef<HTMLInputElement | null>(null);
 
-  const editTask = (id) => {
+  const editTask = (id: string) => {
+    if (!inputRef.current) return;
     const newTitle = inputRef.current.value.trim();
 
     if (!newTitle || newTitle === title.trim()) {
@@ -38,6 +46,8 @@ function TodoEditModal({
   };
 
   useEffect(() => {
+    if (!modalRef.current) return;
+
     const focusableSelectors = "input, button";
     const modal = modalRef.current;
     const focusableElements = modal.querySelectorAll(focusableSelectors);
@@ -45,7 +55,7 @@ function TodoEditModal({
     const lastFocusableElement =
       focusableElements[focusableElements.length - 1];
 
-    function handleKeyDown(e) {
+    function handleKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") {
         handleCloseModal();
         return;
@@ -55,12 +65,12 @@ function TodoEditModal({
         if (e.shiftKey) {
           if (document.activeElement === firstFocusableElement) {
             e.preventDefault();
-            lastFocusableElement.focus();
+            (lastFocusableElement as HTMLElement).focus();
           }
         } else {
           if (document.activeElement === lastFocusableElement) {
             e.preventDefault();
-            firstFocusableElement.focus();
+            (firstFocusableElement as HTMLElement).focus();
           }
         }
       }

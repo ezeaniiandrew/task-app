@@ -1,8 +1,8 @@
 import styles from "./header.module.css";
 import sunIcon from "assets/icon-sun.svg";
 import moonIcon from "assets/icon-moon.svg";
-import { useTheme } from "context/index";
-import Button from "components/Button/Button";
+import { useTheme } from "../../context/index";
+import Button from "../Button/Button";
 
 function Header() {
   const { isDarkMode, toggleDarkMode } = useTheme();

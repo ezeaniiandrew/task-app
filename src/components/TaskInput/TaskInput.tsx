@@ -1,19 +1,24 @@
-/* eslint-disable react/prop-types */
+import { STATUS, Task } from "../../types/task";
 import styles from "./task-input.module.css";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
-function TaskInput({ setTasksData }) {
+type TaskInputProps = {
+  setTasksData: React.Dispatch<React.SetStateAction<Task[]>>;
+};
+
+function TaskInput({ setTasksData }: TaskInputProps) {
   const [inputValue, setInputValue] = useState("");
   const id = crypto.randomUUID();
 
-  const createNewTask = (e) => {
+  const createNewTask = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!inputValue) {
       return;
     }
 
     setTasksData((prevTasks) => {
-      return [{ id, title: inputValue, status: "active" }, ...prevTasks];
+      const newTodo = { id, title: inputValue, status: STATUS.ACTIVE };
+      return [newTodo, ...prevTasks];
     });
 
     setInputValue("");

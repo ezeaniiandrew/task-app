@@ -1,7 +1,13 @@
-/* eslint-disable react/prop-types */
+import { Task, STATUS, typeOfStatus } from "../../types/task";
 import styles from "./checkbox.module.css";
 
-function Checkbox({ type, task, handleChange }) {
+type CheckboxProps = {
+  type: typeOfStatus;
+  task: Task;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
+
+function Checkbox({ type, task, handleChange }: CheckboxProps) {
   const checkboxId = `task-status-${task.id}`;
 
   return (
@@ -10,7 +16,7 @@ function Checkbox({ type, task, handleChange }) {
         className={styles.check}
         type="checkbox"
         aria-label={`Mark ${task.title} as ${
-          type === "active" ? "completed" : "active"
+          type === STATUS.ACTIVE ? "completed" : "active"
         }`}
         checked={type === "completed"}
         id={checkboxId}
