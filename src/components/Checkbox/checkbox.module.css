@@ -58,8 +58,8 @@
   }
 }
 
-.check:focus-visible ~ .completed,
-.check:focus-visible ~ .active {
+.check:focus ~ .completed,
+.check:focus ~ .active {
   outline: 2px solid #5b9dd9;
-  outline-offset: 2px;
+  outline-offset: 3px;
 }
