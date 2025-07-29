@@ -6,20 +6,20 @@ import { ActiveTab, TABS, Task } from "../../types/task";
 type BottomTabProps = {
   tab: ActiveTab;
   handleClick: (tab: ActiveTab) => void;
-  tasksData: Task[];
+  numberOfActiveTasks: number;
   setTasksData: React.Dispatch<React.SetStateAction<Task[]>>;
 };
 
 function BottomTab({
   tab,
   handleClick,
-  tasksData,
+  numberOfActiveTasks,
   setTasksData,
 }: BottomTabProps) {
   return (
     <div className={styles.box}>
       <p>
-        {tasksData.length} item{tasksData.length > 1 ? "s" : ""} left
+        {numberOfActiveTasks} item{numberOfActiveTasks > 1 ? "s" : ""} left
       </p>
       <div>
         <Button

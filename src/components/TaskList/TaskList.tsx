@@ -38,7 +38,7 @@ function TaskList({ tasksData, setTasksData }: TaskListProps) {
         </AnimatePresence>
       </Reorder.Group>
       <BottomTab
-        tasksData={tasksData}
+        numberOfActiveTasks={getTasks("active").length}
         tab={activeTab}
         handleClick={setActiveTab}
         setTasksData={setTasksData}
