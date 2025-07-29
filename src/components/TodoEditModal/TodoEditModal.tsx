@@ -15,7 +15,6 @@ function TodoEditModal({
   id,
   title,
   setTasksData,
-  setShowEditModal,
   handleCloseModal,
 }: TodoEditModalProps) {
   const [showErrorMessage, setShowErrorMessage] = useState(false);
@@ -42,7 +41,7 @@ function TodoEditModal({
           : task
       )
     );
-    setShowEditModal(false);
+    handleCloseModal();
   };
 
   useEffect(() => {
