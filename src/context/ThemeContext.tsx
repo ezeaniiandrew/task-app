@@ -23,7 +23,7 @@ function ThemeProvider({ children }: ThemeProviderProps) {
   };
 
   useEffect(() => {
-    const handleColorSchemeChange = (e) => {
+    const handleColorSchemeChange = (e: MediaQueryListEvent) => {
       localStorage.setItem("prefersDarkMode", JSON.stringify(e.matches));
       setIsDarkMode(e.matches);
     };
